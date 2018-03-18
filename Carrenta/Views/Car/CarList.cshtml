@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Carrenta.Models.Car>
+
+@{
+  ViewBag.Title = "Cars List";
+}
+
+<h2>List of all available cars:</h2>
+
+<table class="table table-striped table-hover table-responsive">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th></th>
+      <th>Bodyshape</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var car in ViewBag.Cars)
+    {
+      <tr>
+        <td>@car.brand</td>
+        <td>@car.year</td>
+        <td>
+          @{
+            string imageDataURL;
+            if (car.imageData != null)
+            {
+              string imageBase64Data = Convert.ToBase64String(car.imageData);
+              imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+            }
+            else
+            {
+              imageDataURL = null;
+            }
+          }
+          <img src="@imageDataURL" alt="Car Image" class="car-image" />
+        </td>
+        <td>@car.body</td>
+        <td>@car.price</td>
+        <td>
+          @Html.ActionLink("Rent", "Create", "Order", new {carId = @car.id}, null)
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

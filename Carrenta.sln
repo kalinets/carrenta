@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carrenta", "Carrenta\Carrenta.csproj", "{6A9A9942-5956-44F4-8D34-A24E1965408C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carrenta.Tests", "Carrenta.Tests\Carrenta.Tests.csproj", "{D272C164-7A98-4300-8D6E-8CD1E52CEFE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A9A9942-5956-44F4-8D34-A24E1965408C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A9A9942-5956-44F4-8D34-A24E1965408C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A9A9942-5956-44F4-8D34-A24E1965408C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A9A9942-5956-44F4-8D34-A24E1965408C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D272C164-7A98-4300-8D6E-8CD1E52CEFE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D272C164-7A98-4300-8D6E-8CD1E52CEFE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D272C164-7A98-4300-8D6E-8CD1E52CEFE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D272C164-7A98-4300-8D6E-8CD1E52CEFE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B394EE19-5A1B-42C0-97A4-5CDC270BB404}
+	EndGlobalSection
+EndGlobal

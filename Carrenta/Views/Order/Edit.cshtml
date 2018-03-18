@@ -1,0 +1,22 @@
+﻿@model Carrenta.Models.Order
+
+@{
+  ViewBag.Title = "Edit Order";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "Order", FormMethod.Post))
+{
+  <dl class="dl-horizontal">
+    @Html.HiddenFor(e => e.id)
+    @Html.HiddenFor(e => e.userID)
+    <dt>Car ID</dt>
+    <dd>@Html.EditorFor(e => e.carID)</dd>
+    <dt>Order date start</dt>
+    <dd>@Html.EditorFor(e => e.dateStart)</dd>
+    <dt>Order date end</dt>
+    <dd>@Html.EditorFor(e => e.dateEnd)</dd>
+  </dl>
+  <input type="submit" value="Save" class="btn btn-warning" />
+}

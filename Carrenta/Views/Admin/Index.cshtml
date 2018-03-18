@@ -1,0 +1,21 @@
+﻿@{
+  ViewBag.Title = "Admin Area";
+}
+
+<h2>Welcome to Admin Panel.</h2>
+<br />
+<p>
+  You can see and manage all the placed orders here:
+  @Html.ActionLink("Manage orders", "OrdersList", "Order")
+</p>
+
+<p>
+  You can see and manage all the cars here:
+  @Html.ActionLink("Manage cars", "ManageCarList", "Car")
+</p>
+
+<p>
+  You can see and manage all the users here:
+  @Html.ActionLink("Manage users", "UserList", "User")
+  <a></a>
+</p>

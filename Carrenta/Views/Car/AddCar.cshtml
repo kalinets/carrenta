@@ -1,0 +1,41 @@
+﻿@{
+  ViewBag.Title = "Add new car";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("AddCar", "Car", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+  <div>
+    <label>
+      Type car name
+      <input class="form-control" type="text" name="carName" required />
+    </label>
+  </div>
+  <div>
+    <label>
+      Attach car image
+      <input type="file" name="carImage" required accept="jpg, png" />
+    </label>
+  </div>
+  <div>
+    <label>
+      Type car production year
+      <input class="form-control" type="number" name="carYear" required />
+    </label>
+  </div>
+  <div>
+    <label>
+      Type car body type
+      <input class="form-control" type="text" name="carBody" required />
+    </label>
+  </div>
+  <div>
+    <label>
+      Type car price per day
+      <input class="form-control" type="number" name="carPrice" required />
+    </label>
+  </div>
+
+  <input type="submit" value="Add Car" />
+  }
