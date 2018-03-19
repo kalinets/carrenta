@@ -10,7 +10,6 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Carrenta.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace Carrenta.Controllers
 {
@@ -24,6 +23,7 @@ namespace Carrenta.Controllers
     public ActionResult Create(int carId)
     {
       ViewBag.userID = User.Identity.GetUserId();
+      ViewBag.userEmail = User.Identity.GetUserName();
       ViewBag.CarID = carId;
       return View();
     }
@@ -38,18 +38,19 @@ namespace Carrenta.Controllers
       order.dateEnd = Convert.ToDateTime(Request.Form["dateend"]);
       db.Orders.Add(order);
       db.SaveChanges();
-      EmailService.SendEmailAsync(order);
+      var userEmail = Request.Form["userEmail"];
+      EmailService.SendEmailAsync(order, userEmail);
       return RedirectToAction("Index", "Home");
     }
 
-    [Authorize]
-    [HttpPost]
-    public async Task<ActionResult> SendMessage(Order order)
-    {
-      EmailService emailService = new EmailService();
-      await EmailService.SendEmailAsync(order);
-      return RedirectToAction("Index", "Home");
-    }
+    //[Authorize]
+    //[HttpPost]
+    //public async Task<ActionResult> SendMessage(Order order)
+    //{
+    //  EmailService emailService = new EmailService();
+    //  await EmailService.SendEmailAsync(order);
+    //  return RedirectToAction("Index", "Home");
+    //}
 
     [Authorize(Users = "ukalinets@gmail.com")]
     public ActionResult OrdersList()

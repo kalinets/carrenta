@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
@@ -13,6 +14,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Carrenta.Models;
+using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Carrenta
 {
@@ -24,14 +27,17 @@ namespace Carrenta
       return Task.FromResult(0);
     }
 
-    public static async Task SendEmailAsync(Order order)
+    public static async Task SendEmailAsync(Order order, string userEmail)
     {
-      var email = new MailMessage("carrenta.orders@outlook.com", "carrenta.orders@yandex.ru")
-      {
-        Subject = "Carrenta. Your rent order confirmation.",
-        Body = "Thank you for your order! <br> Your rent starts on " + order.dateStart + " <br> And your rent will finish by " + order.dateEnd + " <br>  <br> Our manager will contact with you shortly. <br> <br> Have a nice day! <br> <br> -- Carrenta.",
-        IsBodyHtml = true
-      };
+      //var UserEmail = Membership.GetUser().Email;
+      var email = /*new MailMessage("carrenta.orders@outlook.com",  "carrenta.orders@yandex.ru")*/ new MailMessage();
+      email.Subject = "Carrenta. Your rent order confirmation.";
+      email.From = new MailAddress("carrenta.orders@outlook.com");
+      email.To.Add(new MailAddress(userEmail));
+      email.Body = "Thank you for your order! <br> Your rent starts on " + order.dateStart +
+                   " <br> And your rent will finish by " + order.dateEnd +
+                   " <br>  <br> Our manager will contact with you shortly. <br> <br> Have a nice day! <br> <br> -- Carrenta.";
+      email.IsBodyHtml = true;
       using (var smtp = new SmtpClient())
       {
         var credential = new NetworkCredential
@@ -43,7 +49,6 @@ namespace Carrenta
         smtp.Host = "smtp-mail.outlook.com";
         smtp.Port = 587;
         smtp.EnableSsl = true;
-        //smtp.SendMailAsync(email);
         smtp.Send(email);
       }
     }
