@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -42,15 +43,6 @@ namespace Carrenta.Controllers
       EmailService.SendEmailAsync(order, userEmail);
       return RedirectToAction("Index", "Home");
     }
-
-    //[Authorize]
-    //[HttpPost]
-    //public async Task<ActionResult> SendMessage(Order order)
-    //{
-    //  EmailService emailService = new EmailService();
-    //  await EmailService.SendEmailAsync(order);
-    //  return RedirectToAction("Index", "Home");
-    //}
 
     [Authorize(Users = "ukalinets@gmail.com")]
     public ActionResult OrdersList()
@@ -111,6 +103,25 @@ namespace Carrenta.Controllers
       db.Orders.Remove(order);
       db.SaveChanges();
       return RedirectToAction("OrdersList");
+    }
+
+    [Authorize(Users = "ukalinets@gmail.com")]
+    [HttpGet]
+    public ActionResult SelectRangePage()
+    {
+      return View();
+    }
+
+    [Authorize(Users = "ukalinets@gmail.com")]
+    [HttpPost]
+    public ActionResult SelectRangeResult()
+    {
+      var firstDateTime = Convert.ToDateTime(Request.Form["firstdate"]);
+      var lastDateTime = Convert.ToDateTime(Request.Form["lastdate"]);
+      var result = db.Orders
+        .Where(s => s.dateStart >= firstDateTime && s.dateEnd <= lastDateTime)
+        .ToList();
+      return View(result);
     }
   }
 }

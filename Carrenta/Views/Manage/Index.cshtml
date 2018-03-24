@@ -84,4 +84,16 @@
               }
       </dd>*@
   </dl>
+  <dl class="dl-horizontal">
+    <dt>Remove your account?</dt>
+    <dd>
+
+      @using (Html.BeginForm("LogOff2", "Account", new { isRemoveAccount = "true" }, FormMethod.Post))
+      {
+        @Html.AntiForgeryToken()
+        <input type="submit" class="btn btn-danger" value="Remove" id="btn" />
+        <input type="hidden" value=@ViewBag.usId name="usId" />
+      }
+    </dd>
+  </dl>
 </div>

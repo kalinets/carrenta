@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Carrenta.Models.Order>
+
+@{
+  ViewBag.Title = "SelectRangeResult";
+}
+
+<h2>Selected Date Range Orders</h2>
+
+<table class="table table-bordered table-responsive table-light">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>User ID</th>
+      <th>Car ID</th>
+      <th>Date Start</th>
+      <th>Date End</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var order in @Model)
+    {
+      <tr>
+        <td>@order.id</td>
+        <td>@order.userID</td>
+        <td>@order.carID</td>
+        <td>@order.dateStart</td>
+        <td>@order.dateEnd</td>
+        <td><a href="/Order/Edit/@order.id">Edit</a></td>
+        <td><a href="/Order/Delete/@order.id">Delete</a></td>
+      </tr>
+    }
+  </tbody>
+</table>

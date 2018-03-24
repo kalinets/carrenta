@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Carrenta.Models
+namespace Carrenta.Controllers
 {
   public class AdminController : Controller
   {

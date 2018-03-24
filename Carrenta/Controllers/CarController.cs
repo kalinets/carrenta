@@ -125,6 +125,12 @@ namespace Carrenta.Controllers
       return RedirectToAction("ManageCarList");
     }
 
+    [Authorize(Users = "ukalinets@gmail.com")]
+    public ActionResult SelectRange(int id)
+    {
+      return null;
+    }
+
     protected override void Dispose(bool disposing)
     {
       db.Dispose();

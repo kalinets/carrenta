@@ -58,6 +58,7 @@ namespace Carrenta.Controllers
           : "";
 
       var userId = User.Identity.GetUserId();
+      ViewBag.usId = userId;
       var model = new IndexViewModel
       {
         HasPassword = HasPassword(),

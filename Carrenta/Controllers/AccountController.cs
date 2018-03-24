@@ -12,6 +12,7 @@ using Carrenta.Models;
 
 namespace Carrenta.Controllers
 {
+
   [Authorize]
   public class AccountController : Controller
   {
@@ -385,6 +386,21 @@ namespace Carrenta.Controllers
     [ValidateAntiForgeryToken]
     public ActionResult LogOff()
     {
+      AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+      return RedirectToAction("Index", "Home");
+    }
+
+    // POST: /Account/LogOff
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult LogOff2(bool isRemoveAccount, string usId)
+    {
+      if (isRemoveAccount)
+      {
+        UserController uc = new UserController();
+        uc.DeleteAcc(usId);  
+      }
+
       AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
       return RedirectToAction("Index", "Home");
     }

@@ -3,24 +3,10 @@
   // homepage slider
   if ($(".homepage__slider")) {
     $(".homepage__slider").slick({
-      autoplay: true
-    });
+      autoplay: true,
+      adaptiveHeight: true
+  });
   }
-
-  //$("#datestart").datepicker({
-  //  startDate: "today",
-  //  autoclose: true,
-  //  weekStart: 1,
-  //  format: 'mm/dd/yyyy',
-  //  daysOfWeekHighlighted: [0, 6]
-  //});
-  //$("#dateend").datepicker({
-  //  startDate: "today",
-  //  autoclose: true,
-  //  weekStart: 1,
-  //  format: 'mm/dd/yyyy',
-  //  daysOfWeekHighlighted: [0, 6]
-  //});
 
   $(".delete-user").on("click", function (event) {
     event.preventDefault();
@@ -36,9 +22,8 @@
 
   $("#datestart").on("change",
     function () {
+      $("#dateend").val("");
       var startDate = $(this).val();
-      console.log($(this).val());
-      console.log(typeof $(this).val());
       document.getElementById("dateend").setAttribute("min", startDate);
     });
 
